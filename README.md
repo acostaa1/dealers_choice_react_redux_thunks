@@ -2,10 +2,10 @@
 
 <!-- 
 x name your database acme-react-redux
-build your backend with express, pg, sequelize
+x build your backend with express, pg, sequelize
 be creative
-build your front end with react, redux, react-redux, redux-thunk, axios and whatever other libraries you might need
-make sure to seed your data models so that you can display data on the front-end
+x build your front end with react, redux, react-redux, redux-thunk, axios and   whatever other libraries you might need
+x make sure to seed your data models so that you can display data on the front-end
 allow user to modify backend database via post, delete, and optionally put requests
 feel free to use the faker library (version 5.1.0) to generate data (instead of using forms)
 feel free to use the installation scripts below to help get you started as well as the webpack.config.js, server.js, src/index.js and index.html code
