@@ -25,7 +25,7 @@ build out your front end slowly using redux, react-redux, redux-thunk. You can k
 when you are able to show the back end data on the front end, then you should move on
 add an api POST route on your server which will insert data (you can use faker to make things simpler and you can test this with curl)
 add the ability to create data in your react application
-add an api DELETE route on your server which can be used to delete data
+ x add an api DELETE route on your server which can be used to delete data
 add the ability to destroy data in your react application
 
 deploy
