@@ -27,6 +27,7 @@ add an api POST route on your server which will insert data (you can use faker t
 add the ability to create data in your react application
 add an api DELETE route on your server which can be used to delete data
 add the ability to destroy data in your react application
+
 deploy
 
 

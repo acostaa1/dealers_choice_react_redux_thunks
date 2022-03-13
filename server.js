@@ -1,5 +1,7 @@
 const express = require("express");
 const app = express();
+const path = require('path')
+
 const {
   syncDB,
   models: { Director, Movie },
@@ -21,6 +23,15 @@ const startUp = async () => {
 
 startUp();
 
+//add route to show html on client side
+app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'index.html')));
+
+//add middleware static path to connect webpack file to client (will get rid of GET http://localhost:3000/dist/main.js 404 (Not Found) error in browser)
+app.use('/dist', express.static(path.join(__dirname, 'dist')));
+
+//connect css to client side (will get rid of 'Refused to apply style from 'http://localhost:3000/assets/styles.css' because its MIME type ('text/html') is not a supported stylesheet MIME type, and strict MIME checking is enabled.' error)
+app.use('/assets', express.static(path.join(__dirname,'assets')));
+ 
 app.get("/api/movies", async (req, res, next) => {
   try {
     const movies = await Movie.findAll({
