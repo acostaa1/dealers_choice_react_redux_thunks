@@ -1,3 +1,8 @@
 body {
     padding: 1rem;
 }
+
+.delete {
+    margin-left: 1rem;
+    background-color: red;
+}

@@ -18,7 +18,11 @@ class App extends React.Component {
       const selectedMovie = movies[Math.floor(Math.random()*(movies.length))].title;
       this.setState({selectedMovie})
   }
-
+  async remove(movie) {
+    await axios.delete(`/api/movies/${movie.id}`);
+    const movies = this.state.movies.filter((_movie) => _movie.id !== movie.id)
+    this.setState({movies})
+  }
   
   async componentDidMount() {
     // first compenent, axios call to get our movies from server <- from db
@@ -37,7 +41,7 @@ class App extends React.Component {
           <h3>List of Movies Available</h3>
           <ul>
             {movies.map((movie) => (
-              <li key={movie.id}>{movie.title}</li>
+              <li key={movie.id}>{movie.title}<button className="delete" onClick = {()=> this.remove(movie)}>X</button></li>
             ))}
           </ul>
         </div>
