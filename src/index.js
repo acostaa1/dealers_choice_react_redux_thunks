@@ -8,8 +8,18 @@ class App extends React.Component {
     super();
     this.state = {
       movies: [],
+      selectedMovie: [],
     };
+    
   }
+  //picks a movie from list of movies
+  async getRandom() {
+      const movies = (await axios.get("/api/movies")).data;
+      const selectedMovie = movies[Math.floor(Math.random()*(movies.length))].title;
+      this.setState({selectedMovie})
+  }
+
+  
   async componentDidMount() {
     // first compenent, axios call to get our movies from server <- from db
     try {
@@ -33,8 +43,8 @@ class App extends React.Component {
         </div>
 
         <div className="pickMovie">
-            <h3>Pick A Movie to Watch Tonight <button>Pick Movie</button></h3>
-            
+            <h3>Pick A Movie to Watch Tonight <button onClick = {()=> this.getRandom()}>Pick Movie</button></h3>
+            <ul>{this.state.selectedMovie}</ul>
         </div>
       </div>
     );

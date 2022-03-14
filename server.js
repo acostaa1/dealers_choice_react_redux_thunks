@@ -46,7 +46,7 @@ app.get("/api/movies", async (req, res, next) => {
 
 
 //to add your own movie using input
-app.post('api/movies/:title', async (req, res, next) => {
+app.post('/api/movies/:title', async (req, res, next) => {
     try {
         const movie = await Movie.create(req.params);
         res.status(201).send(movie);
@@ -55,16 +55,18 @@ app.post('api/movies/:title', async (req, res, next) => {
     }
 })
 
+
 //to pick random movie from the list
-app.post('api/movies', async (req, res, next)=> {
+app.get('/api/movies/:id', async (req, res, next)=> {
     try {
-        res.status(201).send(await Movie.pickMovie());
+        const movie = await Movie.findByPk(req.params.id, {include: [Director]});
+        res.send(movie);
     } catch (error) {
         next (error)
     }
 })
 
-app.delete('api/movies/:id', async(req, res, next) => {
+app.delete('/api/movies/:id', async(req, res, next) => {
     try {
         const movie = await Movie.findByPk(req.params.id);
         await movie.destroy();
