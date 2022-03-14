@@ -51,7 +51,7 @@ class App extends React.Component {
           <h3>List of Movies Available Or Add Your Own</h3>
           <form onSubmit={() => this.addMovie(this.state.inputMovie)}>
             <input
-              placeholder="add a movie title here"
+              placeholder="add a movie title"
               onChange={this.titleChange}
             ></input>
             <button type="submit" className="add">
@@ -72,8 +72,8 @@ class App extends React.Component {
 
         <div className="pickMovie">
           <h3>
-            Can't Choose One?{" "}
-            <button onClick={() => this.getRandom()}>Decide for me</button>
+            Can't Choose Which To Watch?{" "}
+            <button onClick={() => this.getRandom()}>Pick for me</button>
           </h3>
           <ul>{this.state.selectedMovie}</ul>
         </div>
