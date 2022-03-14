@@ -18,12 +18,12 @@ use this file structure to start out:
 working incrementally is key
 building a full stack application might seem daunting at first, but if you think about composing small parts of the application incrementally (and making sure they work as you do), the task is made much easier.
 
-build a simple Sequelize model and seed some data when the express application starts
+x build a simple Sequelize model and seed some data when the express application starts
 
-build an express api GET route which can be used by the client to return data from your model
+x build an express api GET route which can be used by the client to return data from your model
 build out your front end slowly using redux, react-redux, redux-thunk. You can keep things in one file and separate things out as you get things working.
 when you are able to show the back end data on the front end, then you should move on
-add an api POST route on your server which will insert data (you can use faker to make things simpler and you can test this with curl)
+x add an api POST route on your server which will insert data (you can use faker to make things simpler and you can test this with curl)
 add the ability to create data in your react application
  x add an api DELETE route on your server which can be used to delete data
 add the ability to destroy data in your react application
