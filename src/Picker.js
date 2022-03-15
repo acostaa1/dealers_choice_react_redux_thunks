@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import store from "./store";
+import connect from './connect';
 
 const getRandom = async () => {
   const movies = (await axios.get("/api/movies")).data;
@@ -8,16 +9,18 @@ const getRandom = async () => {
   store.dispatch({ type: "GET_RANDOM_MOVIE", selectedMovie: selectedMovie });
 };
 
-class Picker extends Component {
-  constructor() {
-    super();
-    this.state = store.getState();
-  }
-  componentDidMount() {
-    store.subscribe(()=> this.setState(store.getState()))
-  }
-  render() {
-    const selectedMovie = this.state.selectedMovie;
+// class Picker extends Component {
+//   constructor() {
+//     super();
+//     this.state = store.getState();
+//   }
+//   componentDidMount() {
+//     store.subscribe(()=> this.setState(store.getState()))
+//   }
+//   render() {
+//     const selectedMovie = this.state.selectedMovie;
+
+const Picker = ({selectedMovie}) => {
     return (
       <div className="pickMovie">
         <h3>
@@ -27,6 +30,7 @@ class Picker extends Component {
         <ul>{selectedMovie}</ul>
       </div>
     );
-  }
 }
-export default Picker;
+//   }
+// }
+export default connect(Picker);

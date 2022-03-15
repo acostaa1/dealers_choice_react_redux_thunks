@@ -15,6 +15,9 @@ const reducer = (state = {movies: [], selectedMovie: [], inputTitle: ''}, action
         const movies = [...this.state.movies, action.movie]
         state = {...state, movies}
     }
+    if (action.type === 'INPUT_TITLE') {
+        state = {...state, inputTitle: action.inputTitle}
+    }
    
     console.log(action)
     return state;
