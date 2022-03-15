@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from 'axios';
+import AddMovie from "./AddMovie.js"
 import store from "./store";
 
 const remove = async (movie) => {
@@ -20,15 +21,7 @@ class Movie extends Component {
     return (
       <div className="moviesList">
         <h3>List of Movies Available Or Add Your Own ({movies.length})</h3>
-        <form onSubmit={() => this.addMovie(this.state.inputMovie)}>
-          <input
-            placeholder="add a movie title"
-            onChange={this.titleChange}
-          ></input>
-          <button type="submit" className="add">
-            Add Movie
-          </button>
-        </form>
+        <AddMovie />
         <ul>
           {movies.map((movie) => (
             <li key={movie.id}>

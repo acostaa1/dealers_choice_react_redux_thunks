@@ -7,6 +7,12 @@ const {
   models: { Director, Movie },
 } = require("./db");
 
+//error handling
+app.use((err, req, res, next)=> {
+    console.log(err);
+    res.status(err.status || 500).send(err)
+})
+
 const startUp = async () => {
   try {
     await syncDB();
