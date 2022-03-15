@@ -1,7 +1,7 @@
 import axios from "axios";
 import React from "react";
 import ReactDOM from "react-dom";
-import Movie from "./Movies.js";
+import Movies from "./Movies.js";
 import Picker from "./picker.js";
 import store from "./store.js";
 
@@ -20,7 +20,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Movie />
+        <Movies />
         <Picker />
       </div>
     );

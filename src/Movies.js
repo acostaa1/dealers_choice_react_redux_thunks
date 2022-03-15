@@ -8,7 +8,7 @@ const remove = async (movie) => {
       store.dispatch({ type: "REMOVE_MOVIE", movie});
     }
 
-class Movie extends Component {
+class Movies extends Component {
   constructor() {
     super();
     this.state = store.getState();
@@ -37,4 +37,4 @@ class Movie extends Component {
   }
 }
 
-export default Movie;
+export default Movies;
