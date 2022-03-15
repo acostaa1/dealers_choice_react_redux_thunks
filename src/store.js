@@ -1,5 +1,7 @@
 
-import { createStore, combineReducers } from 'redux'; 
+import { createStore, combineReducers, applyMiddleware } from 'redux'; 
+import thunks from 'redux-thunk';
+import axios from 'axios';
 
 // const reducer = (state = {movies: [], selectedMovie: [], inputTitle: ''}, action) => {
 //     if(action.type === 'LOAD_MOVIES') {
@@ -22,6 +24,14 @@ import { createStore, combineReducers } from 'redux';
 //     console.log(action)
 //     return state;
 // }
+
+//thunk
+export const removeMovie = (movie) => {
+    return async (dispatch) => {
+    const _movie = await axios.delete(`/api/movies/${movie.id}`);
+    dispatch({ type: "REMOVE_MOVIE", movie })
+    }
+} 
 const moviesReducer = (state = [], action) => {
     if(action.type === 'LOAD_MOVIES') {
        //console.log(action)
@@ -61,6 +71,6 @@ const reducer = combineReducers({
     inputTitle: inputTitleReducer,
     
 });
-const store = createStore(reducer);
-window.store = store
+const store = createStore(reducer, applyMiddleware(thunks));
+
 export default store;

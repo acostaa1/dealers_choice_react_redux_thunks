@@ -1,7 +1,7 @@
 import React from "react";
-import axios from "axios";
+//import axios from "axios";
 import AddMovie from "./AddMovie.js";
-//import store from './store'
+import {removeMovie} from './store'
 import {connect} from "react-redux";
 
 // const remove = async (movie) => {
@@ -35,9 +35,9 @@ const mapStateToProps = function(state) {
 
 const mapDispatch = (dispatch) => {
   return {
-    remove: async (movie) => {
-      await axios.delete(`/api/movies/${movie.id}`);
-  dispatch({ type: "REMOVE_MOVIE", movie });
+    remove: (movie) => {
+      //await axios.delete(`/api/movies/${movie.id}`);
+      dispatch(removeMovie(movie));
     }
   }
 }
