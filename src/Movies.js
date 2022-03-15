@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import AddMovie from "./AddMovie.js";
 import store from './store'
-import connect from "./connect";
+import {connect} from "react-redux";
 
 const remove = async (movie) => {
   await axios.delete(`/api/movies/${movie.id}`);
@@ -29,4 +29,7 @@ const Movies = ({ movies }) => {
   );
 };
 
-export default connect(Movies);
+const mapStateToProps = function(state) {
+  return state;
+};
+export default connect(state => state)(Movies);

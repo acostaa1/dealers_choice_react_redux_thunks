@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import store from "./store";
-import connect from './connect';
+import {connect} from 'react-redux';
 
 const getRandom = async () => {
   const movies = (await axios.get("/api/movies")).data;
@@ -33,4 +33,4 @@ const Picker = ({selectedMovie}) => {
 }
 //   }
 // }
-export default connect(Picker);
+export default connect(state=> state)(Picker);

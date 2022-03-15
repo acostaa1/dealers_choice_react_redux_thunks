@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import store from "./store";
-import connect from './connect'
+import {connect} from 'react-redux'
 
 const addMovie = async (title) => {
   const movie = (await axios.post(`/api/movies/${title}`)).data;
@@ -35,4 +35,4 @@ const AddMovie = ({inputTitle}) => {
 }
 //   }
 // }
-export default connect(AddMovie);
+export default connect(state=> state)(AddMovie);

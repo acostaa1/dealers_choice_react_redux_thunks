@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import store from './store'
+import store from '../store'
 
 const connect = (AComponent) => {
     return class Connected extends Component {

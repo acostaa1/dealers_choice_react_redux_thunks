@@ -2,8 +2,9 @@ import axios from "axios";
 import React from "react";
 import ReactDOM from "react-dom";
 import Movies from "./Movies.js";
-import Picker from "./picker.js";
+import Picker from "./Picker.js";
 import store from "./store.js";
+import {Provider} from 'react-redux'
 
 class App extends React.Component {
 
@@ -27,4 +28,4 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App />, document.querySelector("#root"));
+ReactDOM.render(<Provider store = {store}><App /></Provider>, document.querySelector("#root"));
