@@ -33,4 +33,5 @@ const Picker = ({selectedMovie}) => {
 }
 //   }
 // }
+
 export default connect(state=> state)(Picker);
