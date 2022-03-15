@@ -1,5 +1,11 @@
 import React, { Component } from "react";
+import axios from 'axios';
 import store from "./store";
+
+const remove = async (movie) => {
+      await axios.delete(`/api/movies/${movie.id}`);
+      store.dispatch({ type: "REMOVE_MOVIE", movie});
+    }
 
 class Movie extends Component {
   constructor() {
@@ -27,7 +33,7 @@ class Movie extends Component {
           {movies.map((movie) => (
             <li key={movie.id}>
               {movie.title}
-              <button className="delete" onClick={() => this.remove(movie)}>
+              <button className="delete" onClick={() => remove(movie)}>
                 X
               </button>
             </li>
