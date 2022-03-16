@@ -34,16 +34,13 @@ export const removeMovie = (movie) => {
 } 
 const moviesReducer = (state = [], action) => {
     if(action.type === 'LOAD_MOVIES') {
-       //console.log(action)
         return action.movies
     }
     if (action.type === "ADD_MOVIE") {
-        //console.log(action)
         return action.movies
     }
     if (action.type === "REMOVE_MOVIE" ) {
         const movies = state.filter(movie => movie.id !== action.movie.id);
-       // console.log(action)
         return movies
     }
     
@@ -52,7 +49,6 @@ const moviesReducer = (state = [], action) => {
 
 const selectedMovieReducer = (state= [], action) => {
     if (action.type === "GET_RANDOM_MOVIE") {
-        //console.log(action)
         return action.selectedMovie
     }
     return state
