@@ -7,6 +7,7 @@ const sequelize = new Sequelize(
 const Movie = sequelize.define("movie", {
   title: {
     type: Sequelize.STRING,
+    allowNull: false,
   },
   release: {
     type: Sequelize.INTEGER,

@@ -1,13 +1,6 @@
 import React, { Component } from "react";
-import axios from "axios";
-import store from "./store";
-import {connect} from 'react-redux'
-
-const addMovie = async (title) => {
-  const movie = (await axios.post(`/api/movies/${title}`)).data;
-  store.dispatch({ type: "ADD_MOVIE", movie });
-  
-};
+import { addMovie } from "./store";
+import { connect } from "react-redux";
 
 // class AddMovie extends Component {
 //   constructor() {
@@ -20,19 +13,46 @@ const addMovie = async (title) => {
 
 //   render() {
 //     const inputTitle = this.state.inputTitle;
-const AddMovie = ({inputTitle}) => {
+
+class AddMovie extends Component {
+  constructor() {
+    super();
+    this.state = {
+      title: "",
+    };
+  }
+  render() {
+    const { title } = this.state;
+    const { add } = this.props;
     return (
-        <form onSubmit={() => addMovie(inputTitle)}>
-          <input 
-            placeholder="add a movie title"
-            onChange={ev => store.dispatch({ type: "INPUT_TITLE",inputTitle: ev.target.value})}
-          ></input>
-          <button type="submit" className="add">
-            Add Movie
-          </button>
-        </form>
+      <form
+        onSubmit={(ev) => {
+          ev.preventDefault();
+          add(title);
+          this.setState({ title: "" });
+        }}
+      >
+        <input
+          placeholder="add a movie title"
+          value={title}
+          name="title"
+          onChange={(ev) => {
+            this.setState({ title: ev.target.value });
+          }}
+        ></input>
+        <button type="submit" className="add" disabled={!title}>
+          Add Movie
+        </button>
+      </form>
     );
+  }
 }
-//   }
-// }
-export default connect(state=> state)(AddMovie);
+
+const mapDispatch = (dispatch) => {
+  return {
+    add: (title) => {
+      dispatch(addMovie(title));
+    },
+  };
+};
+export default connect(null, mapDispatch)(AddMovie);

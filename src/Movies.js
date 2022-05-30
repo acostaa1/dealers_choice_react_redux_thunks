@@ -1,14 +1,13 @@
 import React from "react";
 //import axios from "axios";
 import AddMovie from "./AddMovie.js";
-import {removeMovie} from './store'
-import {connect} from "react-redux";
+import { removeMovie } from "./store";
+import { connect } from "react-redux";
 
 // const remove = async (movie) => {
 //   await axios.delete(`/api/movies/${movie.id}`);
 //   store.dispatch({ type: "REMOVE_MOVIE", movie });
 // };
-
 
 const Movies = ({ movies, remove }) => {
   return (
@@ -16,7 +15,7 @@ const Movies = ({ movies, remove }) => {
       <h3>List of Movies Available Or Add Your Own ({movies.length})</h3>
       <AddMovie />
       <ul>
-        {movies.map((movie) => (
+        {movies?.map((movie) => (
           <li key={movie.id}>
             {movie.title}
             <button className="delete" onClick={() => remove(movie)}>
@@ -29,7 +28,7 @@ const Movies = ({ movies, remove }) => {
   );
 };
 
-const mapStateToProps = function(state) {
+const mapStateToProps = function (state) {
   return state;
 };
 
@@ -38,7 +37,7 @@ const mapDispatch = (dispatch) => {
     remove: (movie) => {
       //await axios.delete(`/api/movies/${movie.id}`);
       dispatch(removeMovie(movie));
-    }
-  }
-}
+    },
+  };
+};
 export default connect(mapStateToProps, mapDispatch)(Movies);

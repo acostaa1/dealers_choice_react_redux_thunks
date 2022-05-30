@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const path = require('path')
+const path = require("path");
 
 const {
   syncDB,
@@ -8,10 +8,10 @@ const {
 } = require("./db");
 
 //error handling
-app.use((err, req, res, next)=> {
-    console.log(err);
-    res.status(err.status || 500).send(err)
-})
+app.use((err, req, res, next) => {
+  console.log(err);
+  res.status(err.status || 500).send(err);
+});
 
 const startUp = async () => {
   try {
@@ -30,14 +30,16 @@ const startUp = async () => {
 startUp();
 
 //add route to show html on client side
-app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'index.html')));
+app.get("/", (req, res) => res.sendFile(path.join(__dirname, "index.html")));
 
 //add middleware static path to connect webpack file to client (will get rid of GET http://localhost:3000/dist/main.js 404 (Not Found) error in browser)
-app.use('/dist', express.static(path.join(__dirname, 'dist')));
+app.use("/dist", express.static(path.join(__dirname, "dist")));
+
+app.use(express.json());
 
 //connect css to client side (will get rid of 'Refused to apply style from 'http://localhost:3000/assets/styles.css' because its MIME type ('text/html') is not a supported stylesheet MIME type, and strict MIME checking is enabled.' error)
-app.use('/assets', express.static(path.join(__dirname,'assets')));
- 
+app.use("/assets", express.static(path.join(__dirname, "assets")));
+
 app.get("/api/movies", async (req, res, next) => {
   try {
     const movies = await Movie.findAll({
@@ -49,35 +51,32 @@ app.get("/api/movies", async (req, res, next) => {
   }
 });
 
-
-
 //to add your own movie using input
-app.post('/api/movies/:title', async (req, res, next) => {
-    try {
-        const movie = await Movie.create(req.params);
-        res.status(201).send(movie);
-    } catch (error) {
-        next(error)
-    }
-})
-
+app.post("/api/movies/", async (req, res, next) => {
+  try {
+    const movie = await Movie.create(req.body);
+    res.status(201).send(movie);
+  } catch (error) {
+    next(error);
+  }
+});
 
 //to pick random movie from the list
-app.get('/api/movies/:id', async (req, res, next)=> {
-    try {
-        const movie = await Movie.findByPk(req.params.id, {include: [Director]});
-        res.send(movie);
-    } catch (error) {
-        next (error)
-    }
-})
+app.get("/api/movies/:id", async (req, res, next) => {
+  try {
+    const movie = await Movie.findByPk(req.params.id, { include: [Director] });
+    res.send(movie);
+  } catch (error) {
+    next(error);
+  }
+});
 
-app.delete('/api/movies/:id', async(req, res, next) => {
-    try {
-        const movie = await Movie.findByPk(req.params.id);
-        await movie.destroy();
-        res.sendStatus(204);
-    } catch (error) {
-        next(error)
-    }
-})
+app.delete("/api/movies/:id", async (req, res, next) => {
+  try {
+    const movie = await Movie.findByPk(req.params.id);
+    await movie.destroy();
+    res.sendStatus(204);
+  } catch (error) {
+    next(error);
+  }
+});

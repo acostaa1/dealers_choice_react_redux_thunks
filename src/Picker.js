@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
 import axios from "axios";
 import store from "./store";
-import {connect} from 'react-redux';
+import { connect } from "react-redux";
 
 const getRandom = async () => {
   const movies = (await axios.get("/api/movies")).data;
@@ -20,18 +20,18 @@ const getRandom = async () => {
 //   render() {
 //     const selectedMovie = this.state.selectedMovie;
 
-const Picker = ({selectedMovie}) => {
-    return (
-      <div className="pickMovie">
-        <h3>
-          Can't Choose Which To Watch?{" "}
-          <button onClick={()=> getRandom()}>Pick for me</button>
-        </h3>
-        <ul>{selectedMovie}</ul>
-      </div>
-    );
-}
+const Picker = ({ selectedMovie }) => {
+  return (
+    <div className="pickMovie">
+      <h3>
+        Can't Choose Which To Watch?{" "}
+        <button onClick={() => getRandom()}>Pick for me</button>
+      </h3>
+      <ul>{selectedMovie}</ul>
+    </div>
+  );
+};
 //   }
 // }
 
-export default connect(state=> state)(Picker);
+export default connect((state) => state)(Picker);
